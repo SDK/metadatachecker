@@ -1,6 +1,5 @@
 __author__ = 'sagonzal'
 from sacm import *
-import pylab as mypl
 import math as mymath
 import itertools
 
@@ -91,7 +90,7 @@ class AsdmCheck:
                 t0 = 86400.0 * mymath.floor(df.timestamp.min() / 86400.0)
                 df['utimes'] = df.apply(lambda x: x['time'] - t0, axis =1)
                 nT = df.utimes.nunique()
-                df['utimestamp'] = df.apply(lambda x: mypl.floor(x['timestamp']) - t0 , axis =1)
+                df['utimestamp'] = df.apply(lambda x: mymath.floor(x['timestamp']) - t0 , axis =1)
                 nTS = df.utimestamp.nunique()
                 #print name,nT, nTS
                 #print (group)
