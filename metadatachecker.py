@@ -176,10 +176,15 @@ class AsdmCheck:
             return False
 
     def doCheck(self):
-        self.iscsv2555()
-        self.isSyscaltimestamp()
-        self.isValidUID()
-        self.isfixplanets()
-        self.isNullState()
-        self.ict4871()
+        try:
+            self.iscsv2555()
+            self.isSyscaltimestamp()
+            self.isValidUID()
+            self.isfixplanets()
+            self.isNullState()
+            self.ict4871()
+            return True
+        except Exception as e:
+            print e
+            return False
 
