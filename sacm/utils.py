@@ -128,7 +128,7 @@ def RadianTo(num=None, unit=None):
         return str(h)+":"+str(m)+":"+str('%5.5f' % s)
 
 
-def arrayParser(line=None, dimensions=None):
+def arrayParser(line=None, dimensions=None, castFloat=False):
     """
 
     :param line: String to be formated
@@ -141,7 +141,7 @@ def arrayParser(line=None, dimensions=None):
         elements = line.split(' ')[1]
         splits = line.split(' ')[2:]
         for i in splits:
-            result.append(i)
+            result.append(float(i)) if castFloat else result.append(i)
         if int(elements) == len(result):
             return result
         else:
@@ -154,7 +154,7 @@ def arrayParser(line=None, dimensions=None):
         for j in range(0, rows):
             temp = list()
             for i in range(0, columns):
-                temp.append(splits[i+(j*columns)])
+                temp.append(float(splits[i+(j*columns)])) if castFloat else temp.append(splits[i+(j*columns)])
             result.append(temp)
         return result
 

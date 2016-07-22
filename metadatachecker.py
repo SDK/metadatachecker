@@ -4,16 +4,29 @@ import math as mymath
 import itertools
 
 class AsdmCheck:
-    uid = ''
-    asdmDict = dict()
-    check = dict()
-    toc = ''
-    main = ''
-    antennas = ''
-    source = ''
-    scan = ''
-    field = ''
-    syscal = ''
+    #uid = ''
+    #asdmDict = dict()
+    #check = dict()
+    #toc = ''
+    #main = ''
+    #antennas = ''
+    #source = ''
+    #scan = ''
+    #field = ''
+    #syscal = ''
+
+
+    def __init__(self):
+        self.uid = ''
+        self.asdmDict = {}
+        self.check = {}
+        self.toc = ''
+        self.main = ''
+        self.antennas = ''
+        self.source = ''
+        self.scan = ''
+        self.field = ''
+        self.syscal = ''
 
 
     def setUID(self,uid=None):

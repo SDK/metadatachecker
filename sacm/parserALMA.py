@@ -69,6 +69,78 @@ def getAntennas(uid=None):
     else:
         return False
 
+
+def getCalPhase(uid=None):
+    calPhaseXML = GetXML(uid,'CalPhase')
+    if calPhaseXML is not False:
+        calPhase = minidom.parseString(calPhaseXML)
+        calPhaseList = list()
+        rows = calPhase.getElementsByTagName('row')
+        for i in rows:
+            calPhaseList.append((
+                i.getElementsByTagName('basebandName')[0].firstChild.data,
+                i.getElementsByTagName('receiverBand')[0].firstChild.data,
+                i.getElementsByTagName('atmPhaseCorrection')[0].firstChild.data,
+                i.getElementsByTagName('startValidTime')[0].firstChild.data,
+                i.getElementsByTagName('endValidTime')[0].firstChild.data,
+                i.getElementsByTagName('numBaseline')[0].firstChild.data,
+                i.getElementsByTagName('numReceptor')[0].firstChild.data,
+                i.getElementsByTagName('ampli')[0].firstChild.data,
+                i.getElementsByTagName('antennaNames')[0].firstChild.data,
+                i.getElementsByTagName('baselineLengths')[0].firstChild.data,
+                i.getElementsByTagName('decorrelationFactor')[0].firstChild.data,
+                i.getElementsByTagName('direction')[0].firstChild.data,
+                i.getElementsByTagName('frequencyRange')[0].firstChild.data,
+                i.getElementsByTagName('integrationTime')[0].firstChild.data,
+                i.getElementsByTagName('phase')[0].firstChild.data,
+                i.getElementsByTagName('polarizationTypes')[0].firstChild.data,
+                i.getElementsByTagName('phaseRMS')[0].firstChild.data,
+                i.getElementsByTagName('statPhaseRMS')[0].firstChild.data,
+                i.getElementsByTagName('calDataId')[0].firstChild.data,
+                i.getElementsByTagName('calReductionId')[0].firstChild.data,
+            ))
+        return pd.DataFrame(calPhaseList,columns=['basebandName','receiverBand','atmPhaseCorrection','startValidTime','endValidTime','numBaseline',
+                                                  'numReceptor','ampli','antennaNames','baselineLengths','decorrelationFactor','direction',
+                                                  'frequencyRange','integrationTime','phase','polarizationTypes','phaseRMS','statPhaseRMS','calDataId','calReductionId'])
+    else:
+        return False
+
+
+def getCalDelay(uid=None):
+    calDelayXML = GetXML(uid,'CalDelay')
+    if calDelayXML is not False:
+        calDelay = minidom.parseString(calDelayXML)
+        calDelayList = list()
+        rows = calDelay.getElementsByTagName('row')
+        for i in rows:
+            calDelayList.append((
+                i.getElementsByTagName('basebandName')[0].firstChild.data,
+                i.getElementsByTagName('receiverBand')[0].firstChild.data,
+                i.getElementsByTagName('atmPhaseCorrection')[0].firstChild.data,
+                i.getElementsByTagName('startValidTime')[0].firstChild.data,
+                i.getElementsByTagName('endValidTime')[0].firstChild.data,
+                i.getElementsByTagName('numBaseline')[0].firstChild.data,
+                i.getElementsByTagName('numReceptor')[0].firstChild.data,
+                i.getElementsByTagName('ampli')[0].firstChild.data,
+                i.getElementsByTagName('antennaNames')[0].firstChild.data,
+                i.getElementsByTagName('baselineLengths')[0].firstChild.data,
+                i.getElementsByTagName('decorrelationFactor')[0].firstChild.data,
+                i.getElementsByTagName('direction')[0].firstChild.data,
+                i.getElementsByTagName('frequencyRange')[0].firstChild.data,
+                i.getElementsByTagName('integrationTime')[0].firstChild.data,
+                i.getElementsByTagName('phase')[0].firstChild.data,
+                i.getElementsByTagName('polarizationTypes')[0].firstChild.data,
+                i.getElementsByTagName('phaseRMS')[0].firstChild.data,
+                i.getElementsByTagName('statPhaseRMS')[0].firstChild.data,
+                i.getElementsByTagName('calDataId')[0].firstChild.data,
+                i.getElementsByTagName('calReductionId')[0].firstChild.data,
+            ))
+        return pd.DataFrame(calDelayList,columns=['basebandName','receiverBand','atmPhaseCorrection','startValidTime','endValidTime','numBaseline',
+                                                  'numReceptor','ampli','antennaNames','baselineLengths','decorrelationFactor','direction',
+                                                  'frequencyRange','integrationTime','phase','polarizationTypes','phaseRMS','statPhaseRMS','calDataId','calReductionId'])
+    else:
+        return False
+
 def getSBSummary(uid=None):
     summaryXML = GetXML(uid,'SBSummary')
     if summaryXML is not False:
@@ -160,12 +232,12 @@ def getSubScan(uid=None):
                                 i.getElementsByTagName('fieldName')[0].firstChild.data,
                                 i.getElementsByTagName('subscanIntent')[0].firstChild.data,
                                 i.getElementsByTagName('subscanMode')[0].firstChild.data,
-                                #i.getElementsByTagName('numIntegration')[0].firstChild.data,
+                                i.getElementsByTagName('numIntegration')[0].firstChild.data,
                                 #i.getElementsByTagName('numSubintegration')[0].firstChild.data,
                                 #i.getElementsByTagName('correlatorCalibration')[0].firstChild.data
                                 ))
         return pd.DataFrame(subscanList, columns=['scanNumber','subscanNumber','startTime','endTime','fieldName',
-                                                  'subscanIntent','subscanMode'])
+                                                  'subscanIntent','subscanMode','numIntegration'])
     else:
         return False
 
